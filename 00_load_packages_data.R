@@ -332,7 +332,7 @@ Vpop <- data$pop
 
 
 # create dataframe for model testing
-df <- data.frame(Y, T1, T2, S1, S2, Vg,Vh,Vpop)
+df <- data.frame(Y, T1, T2, S1, S2, Vh)
 # define priors
 
 precision.prior2 <- list(prec = list(prior = "pc.prec", param = c(1, 0.01)))
