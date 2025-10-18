@@ -15,13 +15,13 @@ fwrite(frequent1, 'fig 1a.csv', row.names = F)
 
 
 ggplot(frequent1, aes(x = group, y = exposeall,fill=group)) +
-  geom_half_violin(trim = TRUE, # 不裁剪小提琴图，但注意这会导致它覆盖整个范围  
-                   side="r",  # 控制小提琴图的宽度  
+  geom_half_violin(trim = TRUE, 
+                   side="r",   
                    scale='width',width=0.7) + 
   stat_boxplot(geom="errorbar",width=0.1,size=0.7,color="black")+
   geom_boxplot(size=0.4,
                width=0.12,fill = "white",) +
-  coord_flip() +  # 横向绘制
+  coord_flip() +  
   theme_bw() 
 
 data_all$ts<-0
@@ -212,8 +212,8 @@ diff_filtered$warning_type <- factor(diff_filtered$warning_type, levels = warnin
 ##fig. 1c
 ggplot(event_data, aes(x = days, y = intrac,group = interaction(citycode, typhoon_name))) +
   geom_line(color = "lightblue",)+
-  geom_hline(yintercept = 0, color = "black", linetype = "solid") + # 添加水平网格线  
-  geom_vline(xintercept = 0, color = "black", linetype = "solid") + # 添加垂直网格线 
+  geom_hline(yintercept = 0, color = "black", linetype = "solid") +  
+  geom_vline(xintercept = 0, color = "black", linetype = "solid") +  
   labs( x = "Exposure (day)", y = "Baseline (*100%)")+
   xlim(-14,22)+
   ylim(-0.7,0.50)+
@@ -228,9 +228,9 @@ average_data <- event_data2 %>%
 
 ggplot(average_data, aes(x = days, y = avg_intrac)) +
   geom_line(color = "brown") +
-  geom_hline(yintercept = 0, color = "black", linetype = "solid") + # 添加水平网格线  
-  geom_vline(xintercept = -2, color = "black", linetype = "solid") + # 添加垂直网格线 
-  geom_vline(xintercept = 0, color = "black", linetype = "solid") + # 添加垂直网格线 
+  geom_hline(yintercept = 0, color = "black", linetype = "solid") +  
+  geom_vline(xintercept = -2, color = "black", linetype = "solid") +  
+  geom_vline(xintercept = 0, color = "black", linetype = "solid") +  
   labs( title='outflow',x = "Exposure (day)", y = "Baseline (*100%)")+
   #xlim(-14,22)+
   #ylim(-0.7,0.50)+
@@ -246,8 +246,8 @@ average_data <- event_data %>%
 ggplot(average_data, aes(x = days, y = avg_intrac, color = as.factor(exposure_type))) +  
   #geom_ribbon(aes(ymin = avg_intrac-sd, ymax = avg_intrac+sd, fill = exposure_type), alpha = 0.2,color=NA) +
   geom_line(size=1) +  
-  geom_hline(yintercept = 0, color = "black", linetype = "solid") + # 添加水平线  
-  geom_vline(xintercept = 0, color = "black", linetype = "solid") + # 添加垂直线  
+  geom_hline(yintercept = 0, color = "black", linetype = "solid") +  
+  geom_vline(xintercept = 0, color = "black", linetype = "solid") +  
   labs(x = "Exposure (day)", y = "Baseline (*100%)") +  
   #scale_y_continuous(limits = c(-0.52, 0.10), expand = c(0, 0))+
   #scale_x_continuous(limits = c(-10, 5), expand = c(0, 0)) +  
@@ -261,10 +261,10 @@ average_data2 <- event_data2 %>%
 ggplot(average_data2, aes(x = days, y = avg_intrac, color = warning_type)) +  
   geom_ribbon(aes(ymin = avg_intrac-sd, ymax = avg_intrac+sd, fill = warning_type), alpha = 0.2,color=NA) +
   geom_line(size = 1) +  
-  geom_hline(yintercept = 0, color = "black", linetype = "solid") + # 添加水平网格线  
-  geom_vline(xintercept = 0, color = "black", linetype = "solid") + # 添加垂直网格线 
+  geom_hline(yintercept = 0, color = "black", linetype = "solid") +  
+  geom_vline(xintercept = 0, color = "black", linetype = "solid") +  
   labs(x = "Exposure (day)", y = "Baseline (*100%)") +  
-  #scale_color_manual(values = colors) + # 使用自定义颜色  
+  #scale_color_manual(values = colors) +  
   scale_y_continuous(limits = c(-0.52, 0.10), expand = c(0, 0))+
   scale_x_continuous(limits = c(-10, 10), expand = c(0, 0)) +  
   theme_bw()
@@ -324,7 +324,7 @@ ggplot(average_ts50, aes(x = days, y = avg_intrac, group=warning_type,color = wa
   geom_hline(yintercept = 0, color = "black", linetype = "solid") + 
   geom_vline(xintercept = 0, color = "black", linetype = "solid") + 
   labs(title='50kt',x = "Exposure (day)", y = "Baseline (*100%)") +  
-  #scale_color_manual(values = colors) + # 使用自定义颜色  
+  #scale_color_manual(values = colors) + 
   scale_y_continuous(limits = c(-0.35, 0.1), expand = c(0, 0))+
   scale_x_continuous(limits = c(-3, 5), expand = c(0, 0)) +  
   theme_bw()
@@ -341,7 +341,7 @@ ggplot(average_ts64, aes(x = days, y = avg_intrac, group=warning_type,color = wa
   geom_hline(yintercept = 0, color = "black", linetype = "solid") + 
   geom_vline(xintercept = 0, color = "black", linetype = "solid") + 
   labs(title='64kt',x = "Exposure (day)", y = "Baseline (*100%)") +  
-  #scale_color_manual(values = colors) + # 使用自定义颜色  
+  #scale_color_manual(values = colors) +  
   scale_y_continuous(limits = c(-0.35, 0.1), expand = c(0, 0))+
   scale_x_continuous(limits = c(-3, 16), expand = c(0, 0)) +  
   theme_bw()
@@ -357,7 +357,7 @@ ggplot(average_data2, aes(x = days, y = avg_intrac,color= as.factor(diff)))+
   geom_hline(yintercept = 0, color = "black", linetype = "solid") + 
   geom_vline(xintercept = 0, color = "black", linetype = "solid") + 
   labs(title='All',x = "Exposure (day)", y = "Baseline (*100%)") +  
- # scale_color_manual(values = colors) + # 使用自定义颜色  
+ # scale_color_manual(values = colors) +  
   scale_y_continuous(limits = c(-0.3, 0.05), expand = c(0, 0))+
   scale_x_continuous(limits = c(-3, 9), expand = c(0, 0)) +  
   theme_bw()
@@ -372,7 +372,7 @@ ggplot(average_data34, aes(x = days, y = avg_intrac,color= as.factor(diff)))+
   geom_hline(yintercept = 0, color = "black", linetype = "solid") + 
   geom_vline(xintercept = 0, color = "black", linetype = "solid") + 
   labs(title='34kt',x = "Exposure (day)", y = "Baseline (*100%)") +  
-  # scale_color_manual(values = colors) + # 使用自定义颜色  
+  # scale_color_manual(values = colors) +  
   scale_y_continuous(limits = c(-0.3, 0.05), expand = c(0, 0))+
   scale_x_continuous(limits = c(-3, 9), expand = c(0, 0)) +  
   theme_bw()
