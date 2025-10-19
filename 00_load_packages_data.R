@@ -22,6 +22,7 @@ lapply(packages, library, character.only = TRUE)
 # Climate and case/intervention/holiday data in the first week for lagged values 
 data_all <- read.csv("/Volumes/ssd/02 extreme weather&policy/10 data/data0617 all.csv", header = T)
 data_all<-data_all[data_all$year==2023,]
+data_all$intrac<-1-data_all$intrac
 
 # Test correlation for Fig S8 & Fig S9
 # filtered_data <- data_all[,c("windc","precc","tempc","pop34_2","pop50_2","pop64_2","X34kt", "X50kt", "X64kt", "X80kt","X100kt","Cpolicy",'Ppolicy','Npolicy','Rpolicy',"gdppercapita","pop")]
